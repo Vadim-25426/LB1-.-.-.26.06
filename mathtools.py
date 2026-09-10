@@ -1,6 +1,8 @@
 import math
 import sys
 
+print('Для вывода справки о программе напишите в терминале: python mathtools.py --help')
+
 if'--help' in sys.argv:
     print('''Справка: mathtools - решение уравнений вида ax^2+bx+c=0 Использование:
     python mathtools.py   
