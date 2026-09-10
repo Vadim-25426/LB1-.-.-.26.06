@@ -1,15 +1,15 @@
 import math
 import sys
 
-print('Для вывода справки о программе напишите в терминале: python mathtools.py --help')
+print('Для вывода справки о программе напишите в терминале: python mathtool.py --help')
 
 if'--help' in sys.argv:
-    print('''Справка: mathtools - решение уравнений вида ax^2+bx+c=0 Использование:
-    python mathtools.py   
+    print('''Справка: mathtool - решение уравнений вида ax^2+bx+c=0 Использование:
+    python mathtool.py   
     вывод справки:
-    python mathtools.py --help                
+    python mathtool.py --help                
     ввод коэффициентов с клавиатуры
-    python mathtools.py solve -a 1 -b -3 -c 2 решение с заданными коэффициентами
+    python mathtool.py solve -a 1 -b -3 -c 2 решение с заданными коэффициентами
 
     Коэффициенты A, B, C — целые числа, по модулю не превышающие 10000''')
 
