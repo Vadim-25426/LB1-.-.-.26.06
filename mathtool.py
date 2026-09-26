@@ -57,15 +57,12 @@ def main(argv):
     commands={
         'solve': start_solve}
 
-
-
     try:
         return commands[args.command](args)
 
     except (ValueError, OSError) as e:
         print(f'Ошибка: {e}', file=sys.stderr)
         return 1
-
 
 
 if __name__ == '__main__':
