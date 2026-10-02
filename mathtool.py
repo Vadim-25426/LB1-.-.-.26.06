@@ -2,19 +2,8 @@ import sys
 from calc.equation import *
 from cli import build_razb
 from calc.stats import *
+from calc.series import *
 
-
-print('Для вывода справки о программе напишите в терминале: python mathtool.py --help')
-
-if'--help' in sys.argv:
-    print('''Справка: mathtool - решение уравнений вида ax^2+bx+c=0 Использование:
-    python mathtool.py   
-    вывод справки:
-    python mathtool.py --help                
-    ввод коэффициентов с клавиатуры
-    python mathtool.py solve -a 1 -b -3 -c 2 решение с заданными коэффициентами
-    Коэффициенты A, B, C — целые числа, по модулю не превышающие 10000''')
-    sys.exit(0)
 def start_solve(args):
     #Команда solve — решение уравнения
     # Если параметры не заданы — читаем с клавиатуры
@@ -47,6 +36,41 @@ def start_solve(args):
             print('Действительных корней нет')
 
     return 0
+def start_stats(args):
+    if args.input:
+        with open(args.input, encoding='utf-8') as source:
+            nums = read_numbers(source)
+    else:
+        nums = read_numbers(sys.stdin)
+
+    results =compute(nums)
+
+    for label, value, form in results:
+        if value is None:
+            print(f"{label}: НЕ СУЩЕСТВУЕТ")
+        else:
+            print(f"{label}: {value:{form}}")
+
+    return 0
+def start_series(args):
+    if args.func not in FORMULAS:
+        raise ValueError(f'неизвестный ряд: {args.func}')
+
+    term_func, description = FORMULAS[args.func]  # Достаём функцию-слагаемое (term_third или term_sqplus)
+
+    if args.terms is None and args.eps is None:
+        raise ValueError('Необходимо указать либо --terms, либо --eps')
+    elif args.terms is None:
+        count, total = sum_by_eps(term_func, args.eps)
+    elif args.eps is None:
+        count, total = sum_by_count(term_func, args.terms)
+    else:
+        raise ValueError('Нельзя указывать одновременно --terms и --eps')
+    print(FORMULAS[args.func])
+    print(f"Слагаемых: {count}")
+    print(f"Сумма ряда: {total:.4f}")
+    return 0
+
 def main(argv):
     parser = build_razb()
     args = parser.parse_args(argv)
@@ -55,7 +79,9 @@ def main(argv):
         parser.print_help()
         return 0
     commands={
-        'solve': start_solve}
+        'solve': start_solve,
+        'stats': start_stats,
+        'series': start_series,}
 
     try:
         return commands[args.command](args)
