@@ -1,6 +1,6 @@
+import math
+
 MAX_VALUE = 10_000
-
-
 
 def read_numbers(lines): #Разбор строк в список чисел. lines — список строк или файловый объект.
     numbers = []
@@ -9,15 +9,15 @@ def read_numbers(lines): #Разбор строк в список чисел. li
             try:
                 numbers.append(float(word))
             except ValueError:
-                raise ValueError(f"'{word}' не является числом")
+                raise ValueError(f'{word} не является числом')
     if len(numbers) == 0:
-        raise ValueError("Список пуст")
+        raise ValueError('Список пуст')
     if len(numbers) > 20:
-        raise ValueError("Количество чисел превышает 20")
+        raise ValueError('Количество чисел превышает 20')
     if any(not math.isfinite(n) for n in numbers):
-        raise ValueError("Числа должны быть конечными")
+        raise ValueError('Числа должны быть конечными')
     if any(abs(n) > MAX_VALUE for n in numbers):
-        raise ValueError("Числа по модулю не должны превышать 10000")
+        raise ValueError('Числа по модулю не должны превышать 10000')
     return numbers
 
 
@@ -65,18 +65,19 @@ def negative_count(nums):
 
 # Таблица показателей(метка, функция, формат)
 reports = [
-    ("Количество",       lenn,             "d"),
-    ("Сумма",            summa,            ".3f"),
-    ("Сред. арифм.",     sr_arif,             ".3f"),
-    ("Сумма кв.",        sum_kv,   ".3f"),
-    ("Ср. кв.",          sr_kv, ".3f"),
-    ("Дисперсия",        dispercy,         ".3f"),
-    ("СКО",              sko,      ".3f"),
-    ("Станд. откл.",     stand_otkl,   ".3f"),
-    ("Наименьшее",       minimum,          ".3f"),
-    ("Наибольшее",       maximum,          ".3f"),
-    ("Положительных",    positive_count,    "d"),
-    ("Отрицательных",    negative_count,    "d"),
+
+    ('Количество',       lenn, 'd'),
+    ('Сумма',            summa, '.3f'),
+    ('Сред. арифм.',     sr_arif, '.3f'),
+    ('Сумма кв.',        sum_kv, '.3f'),
+    ('Ср. кв.',          sr_kv, '.3f'),
+    ('Дисперсия',        dispercy, '.3f'),
+    ('СКО',              sko, '.3f'),
+    ('Станд. откл.',     stand_otkl, '.3f'),
+    ('Наименьшее',       minimum, '.3f'),
+    ('Наибольшее',       maximum, '.3f'),
+    ('Положительных',    positive_count, 'd'),
+    ('Отрицательных',    negative_count, 'd'),
 ]
 
 
@@ -87,5 +88,5 @@ def compute(nums):
         value = func(nums)
         if value is None:
             raise ValueError(f'{label} не существует')
-        results.append((label,f'{value:{form}}'))
+        results.append((label,value,form))
     return results
