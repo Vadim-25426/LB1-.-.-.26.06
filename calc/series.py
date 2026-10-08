@@ -40,3 +40,4 @@ def sum_by_eps(term_func, eps):
             return n, res
         if n >= MAX_ITERATIONS:
             raise ValueError('точность не достигнута; код 1')
+        #ddsec

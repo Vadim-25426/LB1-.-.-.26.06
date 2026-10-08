@@ -36,3 +36,4 @@ def integral(f_name, a, b, steps):
         x = a + i * dx
         res += F(x) * dx
     return f'Значение интеграла:{res:{form}}'
+#cwecwc

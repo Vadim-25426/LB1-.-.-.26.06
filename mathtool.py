@@ -51,7 +51,7 @@ def start_stats(args):
         if value is None:
             print(f"{label}: НЕ СУЩЕСТВУЕТ; код 1")
         else:
-            print(f"{label}: {value:{form}}; код 1")
+            print(f"{label}oj;lnln: {value:{form}}; код 1")
 
     return 0
 def start_series(args):

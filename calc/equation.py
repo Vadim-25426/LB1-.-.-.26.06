@@ -30,3 +30,4 @@ def solve(a: int, b: int, c: int):
         return "квадратное", D, [x]
     else:
         return "квадратное", D, []
+    #wcewc

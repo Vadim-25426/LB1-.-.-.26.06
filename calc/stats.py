@@ -90,3 +90,4 @@ def compute(nums):
             raise ValueError(f'{label} не существует; код 1')
         results.append((label,value,form))
     return results
+#cwec
