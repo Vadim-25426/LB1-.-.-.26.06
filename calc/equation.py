@@ -7,7 +7,7 @@ def check_coefficients(coefficients: dict[str, int]):
     #Проверка коэффициентов на допустимый диапазон
     for name, value in coefficients.items():
         if abs(value) > MAX_VALUE:
-            raise ValueError(f"коэффициент {name} вне допустимого диапазона")
+            raise ValueError(f"коэффициент {name} вне допустимого диапазона; код 1")
 
 
 def solve(a: int, b: int, c: int):
@@ -15,7 +15,7 @@ def solve(a: int, b: int, c: int):
     if a == 0:
         if b == 0:
             # Не уравнение
-            return "не уравнение", None, []
+            raise ValueError ("не уравнение; код 1")
         # Линейное
         x = -c / b
         return "линейное", None, [x]

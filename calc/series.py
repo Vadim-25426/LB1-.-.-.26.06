@@ -21,7 +21,7 @@ FORMULAS = {
     'third': (term_third,'S = 1/3 - 1/6 + 1/9 - 1/12 + ...')}
 def sum_by_count(term_func, count):
     if count < 1 or count > MAX_TERMS:
-        raise ValueError('количество слагаемых должно быть от 1 до 10000')
+        raise ValueError('количество слагаемых должно быть от 1 до 10000; код 1')
     res = 0.0
     for n in range(1, count + 1):
         res += term_func(n)
@@ -29,7 +29,7 @@ def sum_by_count(term_func, count):
 
 def sum_by_eps(term_func, eps):
     if not math.isfinite(eps) or eps <= 0 or eps < MIN_EPS:
-        raise ValueError('точность должна быть больше 0 и не грубее 0.0001')
+        raise ValueError('точность должна быть больше 0 и не грубее 0.0001; код 1')
     res = 0.0
     n = 0
     while True:
@@ -39,4 +39,4 @@ def sum_by_eps(term_func, eps):
         if abs(value) < eps:
             return n, res
         if n >= MAX_ITERATIONS:
-            raise ValueError('точность не достигнута')
+            raise ValueError('точность не достигнута; код 1')

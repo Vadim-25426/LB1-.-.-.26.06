@@ -1,6 +1,6 @@
 import math
 
-MAX_VALUE = 10_000
+MAX_VALUE = 10000
 
 def read_numbers(lines): #Разбор строк в список чисел. lines — список строк или файловый объект.
     numbers = []
@@ -87,6 +87,6 @@ def compute(nums):
     for label, func, form in reports:
         value = func(nums)
         if value is None:
-            raise ValueError(f'{label} не существует')
+            raise ValueError(f'{label} не существует; код 1')
         results.append((label,value,form))
     return results
