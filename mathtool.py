@@ -40,8 +40,11 @@ def start_solve(args):
     return 0
 def start_stats(args):
     if args.input:
-        with open(args.input, encoding='utf-8') as source:
-            nums = read_numbers(source)
+        try:
+            with open(args.input, encoding='utf-8') as source:
+                nums = read_numbers(source)
+        except FileNotFoundError:
+            raise ValueError('файл не открывается')
     else:
         nums = read_numbers(sys.stdin)
 
@@ -49,9 +52,9 @@ def start_stats(args):
 
     for label, value, form in results:
         if value is None:
-            print(f"{label}: НЕ СУЩЕСТВУЕТ; код 1")
+            print(f"{label}: НЕ СУЩЕСТВУЕТ")
         else:
-            print(f"{label}oj;lnln: {value:{form}}; код 1")
+            print(f"{label}: {value:{form}}")
 
     return 0
 def start_series(args):

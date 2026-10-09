@@ -9,15 +9,15 @@ def read_numbers(lines): #Разбор строк в список чисел. li
             try:
                 numbers.append(float(word))
             except ValueError:
-                raise ValueError(f'{word} не является числом')
+                raise ValueError(f'{word} не является числом; код 1')
     if len(numbers) == 0:
-        raise ValueError('Список пуст')
+        raise ValueError('Список пуст; код 1')
     if len(numbers) > 20:
-        raise ValueError('Количество чисел превышает 20')
+        raise ValueError('Количество чисел превышает 20; код 1')
     if any(not math.isfinite(n) for n in numbers):
-        raise ValueError('Числа должны быть конечными')
+        raise ValueError('Числа должны быть конечными; код 1')
     if any(abs(n) > MAX_VALUE for n in numbers):
-        raise ValueError('Числа по модулю не должны превышать 10000')
+        raise ValueError('Числа по модулю не должны превышать 10000; код 1')
     return numbers
 
 
@@ -86,8 +86,7 @@ def compute(nums):
     results = []
     for label, func, form in reports:
         value = func(nums)
-        if value is None:
-            raise ValueError(f'{label} не существует; код 1')
+
         results.append((label,value,form))
     return results
 #cwec
